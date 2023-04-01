@@ -67,7 +67,7 @@ int main()
 
 
         }
-        else if(arr[0]==NULL)
+        else if(arr[0]==NULL &&arr[0]!=0)
         {
             break;
         }
@@ -83,8 +83,12 @@ int main()
 
     if(check!=0)
     {
-        printf("return value : %d", check);
+        if(arr[0]==NULL){
+        printf("\nEMPTY ARRAY");
 
+        }else{
+        printf("return value : %d", check);
+        }
     }
     else
     {
@@ -110,7 +114,7 @@ int8_t insertionSort(int32_t *array, uint8_t arraySize)
 
 
     }
-    else if(array[0] == NULL)
+    else if(array[0] == NULL && arr[0]!=0)
     {
         return_value = -2;
 

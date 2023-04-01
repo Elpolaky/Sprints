@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1680120410 source:c:\kareem\my data\courses\sprints\task status\check balanced paranthethes\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1680138638 source:c:\kareem\my data\courses\sprints\sprints_repo\sprints\sprints_tasks\5- c programming\3- algorithms\check balanced paranthethes\code\main.c
+	<stdio.h>
+	<stdlib.h>
+
