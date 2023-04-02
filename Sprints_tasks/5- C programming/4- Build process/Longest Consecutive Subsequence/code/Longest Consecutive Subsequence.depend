@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1680188479 source:c:\kareem\my data\courses\sprints\task status\longest consecutive subsequence\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1680188479 source:c:\kareem\my data\courses\sprints\sprints_repo\sprints\sprints_tasks\5- c programming\3- algorithms\longest consecutive subsequence\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1680390417 source:c:\kareem\my data\courses\sprints\sprints_repo\sprints\sprints_tasks\5- c programming\3- algorithms\longest consecutive subsequence\code\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1680396182 source:c:\kareem\my data\courses\sprints\sprints_repo\sprints\sprints_tasks\5- c programming\4- build process\longest consecutive subsequence\code\longest.c
+	"longest.h"
+
+1680396183 c:\kareem\my data\courses\sprints\sprints_repo\sprints\sprints_tasks\5- c programming\4- build process\longest consecutive subsequence\code\longest.h
+	<stdio.h>
+	<stdlib.h>
+
