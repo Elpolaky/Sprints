@@ -1,0 +1,1348 @@
+
+sprints.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000572  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000005e6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000002  00800060  00800060  000005e6  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000005e6  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000618  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  00000654  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001a85  00000000  00000000  00000744  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000008fc  00000000  00000000  000021c9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000bf6  00000000  00000000  00002ac5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000174  00000000  00000000  000036bc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005bd  00000000  00000000  00003830  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000807  00000000  00000000  00003ded  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000a0  00000000  00000000  000045f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a2 36       	cpi	r26, 0x62	; 98
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 51 01 	call	0x2a2	; 0x2a2 <main>
+  74:	0c 94 b7 02 	jmp	0x56e	; 0x56e <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <Led_sequenceV1>:
+
+uint8_t flag,value ;
+void Led_sequenceV1(void){
+	 
+	 
+	BUTTON_init(BUTTON_1_PORT,BUTTON_1_PIN);
+  7c:	61 e0       	ldi	r22, 0x01	; 1
+  7e:	82 e0       	ldi	r24, 0x02	; 2
+  80:	0e 94 06 01 	call	0x20c	; 0x20c <BUTTON_init>
+	LED_init(PORT_B,PIN_0);
+  84:	60 e0       	ldi	r22, 0x00	; 0
+  86:	81 e0       	ldi	r24, 0x01	; 1
+  88:	0e 94 25 01 	call	0x24a	; 0x24a <LED_init>
+	LED_init(PORT_B,PIN_1);
+  8c:	61 e0       	ldi	r22, 0x01	; 1
+  8e:	81 e0       	ldi	r24, 0x01	; 1
+  90:	0e 94 25 01 	call	0x24a	; 0x24a <LED_init>
+	LED_init(PORT_B,PIN_2);
+  94:	62 e0       	ldi	r22, 0x02	; 2
+  96:	81 e0       	ldi	r24, 0x01	; 1
+  98:	0e 94 25 01 	call	0x24a	; 0x24a <LED_init>
+	LED_init(PORT_B,PIN_3);
+  9c:	63 e0       	ldi	r22, 0x03	; 3
+  9e:	81 e0       	ldi	r24, 0x01	; 1
+  a0:	0e 94 25 01 	call	0x24a	; 0x24a <LED_init>
+	
+	while (1)
+	{
+		BUTTON_read(BUTTON_1_PORT,BUTTON_1_PIN,&value);
+  a4:	41 e6       	ldi	r20, 0x61	; 97
+  a6:	50 e0       	ldi	r21, 0x00	; 0
+  a8:	61 e0       	ldi	r22, 0x01	; 1
+  aa:	82 e0       	ldi	r24, 0x02	; 2
+  ac:	0e 94 16 01 	call	0x22c	; 0x22c <BUTTON_read>
+		
+		if(value == HIGH){
+  b0:	80 91 61 00 	lds	r24, 0x0061	; 0x800061 <value>
+  b4:	81 30       	cpi	r24, 0x01	; 1
+  b6:	71 f4       	brne	.+28     	; 0xd4 <Led_sequenceV1+0x58>
+			flag++;
+  b8:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  bc:	8f 5f       	subi	r24, 0xFF	; 255
+  be:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  c2:	2f e5       	ldi	r18, 0x5F	; 95
+  c4:	8a ee       	ldi	r24, 0xEA	; 234
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	21 50       	subi	r18, 0x01	; 1
+  ca:	80 40       	sbci	r24, 0x00	; 0
+  cc:	90 40       	sbci	r25, 0x00	; 0
+  ce:	e1 f7       	brne	.-8      	; 0xc8 <Led_sequenceV1+0x4c>
+  d0:	00 c0       	rjmp	.+0      	; 0xd2 <Led_sequenceV1+0x56>
+  d2:	00 00       	nop
+			_delay_ms(300);
+			
+		}
+		
+		if(flag == 1){
+  d4:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+  d8:	81 30       	cpi	r24, 0x01	; 1
+  da:	81 f4       	brne	.+32     	; 0xfc <Led_sequenceV1+0x80>
+			LED_on(PORT_B,PIN_0);
+  dc:	60 e0       	ldi	r22, 0x00	; 0
+  de:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_off(PORT_B,PIN_1);
+  e2:	61 e0       	ldi	r22, 0x01	; 1
+  e4:	81 e0       	ldi	r24, 0x01	; 1
+  e6:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_2);
+  ea:	62 e0       	ldi	r22, 0x02	; 2
+  ec:	81 e0       	ldi	r24, 0x01	; 1
+  ee:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_3);
+  f2:	63 e0       	ldi	r22, 0x03	; 3
+  f4:	81 e0       	ldi	r24, 0x01	; 1
+  f6:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+  fa:	d4 cf       	rjmp	.-88     	; 0xa4 <Led_sequenceV1+0x28>
+			
+			
+			}else if (flag == 2){
+  fc:	82 30       	cpi	r24, 0x02	; 2
+  fe:	89 f4       	brne	.+34     	; 0x122 <Led_sequenceV1+0xa6>
+			LED_on(PORT_B,PIN_0);
+ 100:	60 e0       	ldi	r22, 0x00	; 0
+ 102:	81 e0       	ldi	r24, 0x01	; 1
+ 104:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_1);
+ 108:	61 e0       	ldi	r22, 0x01	; 1
+ 10a:	81 e0       	ldi	r24, 0x01	; 1
+ 10c:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_off(PORT_B,PIN_2);
+ 110:	62 e0       	ldi	r22, 0x02	; 2
+ 112:	81 e0       	ldi	r24, 0x01	; 1
+ 114:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_3);
+ 118:	63 e0       	ldi	r22, 0x03	; 3
+ 11a:	81 e0       	ldi	r24, 0x01	; 1
+ 11c:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+ 120:	c1 cf       	rjmp	.-126    	; 0xa4 <Led_sequenceV1+0x28>
+			
+			
+			}else if (flag == 3){
+ 122:	83 30       	cpi	r24, 0x03	; 3
+ 124:	89 f4       	brne	.+34     	; 0x148 <Led_sequenceV1+0xcc>
+			LED_on(PORT_B,PIN_0);
+ 126:	60 e0       	ldi	r22, 0x00	; 0
+ 128:	81 e0       	ldi	r24, 0x01	; 1
+ 12a:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_1);
+ 12e:	61 e0       	ldi	r22, 0x01	; 1
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_2);
+ 136:	62 e0       	ldi	r22, 0x02	; 2
+ 138:	81 e0       	ldi	r24, 0x01	; 1
+ 13a:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_off(PORT_B,PIN_3);
+ 13e:	63 e0       	ldi	r22, 0x03	; 3
+ 140:	81 e0       	ldi	r24, 0x01	; 1
+ 142:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+ 146:	ae cf       	rjmp	.-164    	; 0xa4 <Led_sequenceV1+0x28>
+			
+			
+			}else if (flag == 4){
+ 148:	84 30       	cpi	r24, 0x04	; 4
+ 14a:	89 f4       	brne	.+34     	; 0x16e <Led_sequenceV1+0xf2>
+			LED_on(PORT_B,PIN_0);
+ 14c:	60 e0       	ldi	r22, 0x00	; 0
+ 14e:	81 e0       	ldi	r24, 0x01	; 1
+ 150:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_1);
+ 154:	61 e0       	ldi	r22, 0x01	; 1
+ 156:	81 e0       	ldi	r24, 0x01	; 1
+ 158:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_2);
+ 15c:	62 e0       	ldi	r22, 0x02	; 2
+ 15e:	81 e0       	ldi	r24, 0x01	; 1
+ 160:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_3);
+ 164:	63 e0       	ldi	r22, 0x03	; 3
+ 166:	81 e0       	ldi	r24, 0x01	; 1
+ 168:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+ 16c:	9b cf       	rjmp	.-202    	; 0xa4 <Led_sequenceV1+0x28>
+			
+			}else if (flag == 5){
+ 16e:	85 30       	cpi	r24, 0x05	; 5
+ 170:	89 f4       	brne	.+34     	; 0x194 <Led_sequenceV1+0x118>
+			LED_off(PORT_B,PIN_0);
+ 172:	60 e0       	ldi	r22, 0x00	; 0
+ 174:	81 e0       	ldi	r24, 0x01	; 1
+ 176:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_on(PORT_B,PIN_1);
+ 17a:	61 e0       	ldi	r22, 0x01	; 1
+ 17c:	81 e0       	ldi	r24, 0x01	; 1
+ 17e:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_2);
+ 182:	62 e0       	ldi	r22, 0x02	; 2
+ 184:	81 e0       	ldi	r24, 0x01	; 1
+ 186:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_3);
+ 18a:	63 e0       	ldi	r22, 0x03	; 3
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+ 192:	88 cf       	rjmp	.-240    	; 0xa4 <Led_sequenceV1+0x28>
+			
+			
+			}else if (flag == 6){
+ 194:	86 30       	cpi	r24, 0x06	; 6
+ 196:	89 f4       	brne	.+34     	; 0x1ba <Led_sequenceV1+0x13e>
+			LED_off(PORT_B,PIN_0);
+ 198:	60 e0       	ldi	r22, 0x00	; 0
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_1);
+ 1a0:	61 e0       	ldi	r22, 0x01	; 1
+ 1a2:	81 e0       	ldi	r24, 0x01	; 1
+ 1a4:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_on(PORT_B,PIN_2);
+ 1a8:	62 e0       	ldi	r22, 0x02	; 2
+ 1aa:	81 e0       	ldi	r24, 0x01	; 1
+ 1ac:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+			LED_on(PORT_B,PIN_3);
+ 1b0:	63 e0       	ldi	r22, 0x03	; 3
+ 1b2:	81 e0       	ldi	r24, 0x01	; 1
+ 1b4:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+ 1b8:	75 cf       	rjmp	.-278    	; 0xa4 <Led_sequenceV1+0x28>
+			
+		}
+		else if (flag == 7){
+ 1ba:	87 30       	cpi	r24, 0x07	; 7
+ 1bc:	89 f4       	brne	.+34     	; 0x1e0 <Led_sequenceV1+0x164>
+			LED_off(PORT_B,PIN_0);
+ 1be:	60 e0       	ldi	r22, 0x00	; 0
+ 1c0:	81 e0       	ldi	r24, 0x01	; 1
+ 1c2:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_1);
+ 1c6:	61 e0       	ldi	r22, 0x01	; 1
+ 1c8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ca:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_2);
+ 1ce:	62 e0       	ldi	r22, 0x02	; 2
+ 1d0:	81 e0       	ldi	r24, 0x01	; 1
+ 1d2:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_on(PORT_B,PIN_3);
+ 1d6:	63 e0       	ldi	r22, 0x03	; 3
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	0e 94 35 01 	call	0x26a	; 0x26a <LED_on>
+ 1de:	62 cf       	rjmp	.-316    	; 0xa4 <Led_sequenceV1+0x28>
+			
+			}else if (flag == 8){
+ 1e0:	88 30       	cpi	r24, 0x08	; 8
+ 1e2:	09 f0       	breq	.+2      	; 0x1e6 <Led_sequenceV1+0x16a>
+ 1e4:	5f cf       	rjmp	.-322    	; 0xa4 <Led_sequenceV1+0x28>
+			LED_off(PORT_B,PIN_0);
+ 1e6:	60 e0       	ldi	r22, 0x00	; 0
+ 1e8:	81 e0       	ldi	r24, 0x01	; 1
+ 1ea:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_1);
+ 1ee:	61 e0       	ldi	r22, 0x01	; 1
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_2);
+ 1f6:	62 e0       	ldi	r22, 0x02	; 2
+ 1f8:	81 e0       	ldi	r24, 0x01	; 1
+ 1fa:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			LED_off(PORT_B,PIN_3);
+ 1fe:	63 e0       	ldi	r22, 0x03	; 3
+ 200:	81 e0       	ldi	r24, 0x01	; 1
+ 202:	0e 94 45 01 	call	0x28a	; 0x28a <LED_off>
+			flag =0 ;
+ 206:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 20a:	4c cf       	rjmp	.-360    	; 0xa4 <Led_sequenceV1+0x28>
+
+0000020c <BUTTON_init>:
+ *  Author: moham
+ */ 
+#include "button.h"
+
+Dio_ErrorStatus BUTTON_init(PORT_NUM portnum ,PIN_NUM pinnum){
+	Dio_ErrorStatus loc_errorStatus = DIO_init(portnum,pinnum,INPUT);
+ 20c:	40 e0       	ldi	r20, 0x00	; 0
+ 20e:	0e 94 56 01 	call	0x2ac	; 0x2ac <DIO_init>
+	if ( loc_errorStatus == Dio_PortError){
+ 212:	81 30       	cpi	r24, 0x01	; 1
+ 214:	29 f0       	breq	.+10     	; 0x220 <BUTTON_init+0x14>
+		
+		return Dio_PortError;
+		
+	}else if (loc_errorStatus == Dio_PinError){
+ 216:	82 30       	cpi	r24, 0x02	; 2
+ 218:	29 f0       	breq	.+10     	; 0x224 <BUTTON_init+0x18>
+		
+		return Dio_PinError;
+		
+		
+	}else if (loc_errorStatus == Dio_DirectionError){
+ 21a:	84 30       	cpi	r24, 0x04	; 4
+ 21c:	29 f4       	brne	.+10     	; 0x228 <BUTTON_init+0x1c>
+ 21e:	08 95       	ret
+
+Dio_ErrorStatus BUTTON_init(PORT_NUM portnum ,PIN_NUM pinnum){
+	Dio_ErrorStatus loc_errorStatus = DIO_init(portnum,pinnum,INPUT);
+	if ( loc_errorStatus == Dio_PortError){
+		
+		return Dio_PortError;
+ 220:	81 e0       	ldi	r24, 0x01	; 1
+ 222:	08 95       	ret
+		
+	}else if (loc_errorStatus == Dio_PinError){
+		
+		return Dio_PinError;
+ 224:	82 e0       	ldi	r24, 0x02	; 2
+ 226:	08 95       	ret
+	}else if (loc_errorStatus == Dio_DirectionError){
+	
+		return Dio_DirectionError;
+	
+	}else{
+		return Dio_Ok;
+ 228:	80 e0       	ldi	r24, 0x00	; 0
+}
+}
+ 22a:	08 95       	ret
+
+0000022c <BUTTON_read>:
+
+Dio_ErrorStatus BUTTON_read(PORT_NUM portnum ,PIN_NUM pinnum, uint8_t *value){
+	
+	Dio_ErrorStatus loc_errorStatus = DIO_read(portnum,pinnum,value);
+ 22c:	0e 94 74 02 	call	0x4e8	; 0x4e8 <DIO_read>
+	 if (loc_errorStatus == Dio_PortError){
+ 230:	81 30       	cpi	r24, 0x01	; 1
+ 232:	29 f0       	breq	.+10     	; 0x23e <BUTTON_read+0x12>
+	
+		return Dio_PortError;
+	
+	}else if (loc_errorStatus == Dio_PinError){
+ 234:	82 30       	cpi	r24, 0x02	; 2
+ 236:	29 f0       	breq	.+10     	; 0x242 <BUTTON_read+0x16>
+	
+		return Dio_PinError;
+	
+	}else if (loc_errorStatus == Dio_NullPointer){
+ 238:	85 30       	cpi	r24, 0x05	; 5
+ 23a:	29 f4       	brne	.+10     	; 0x246 <BUTTON_read+0x1a>
+ 23c:	08 95       	ret
+Dio_ErrorStatus BUTTON_read(PORT_NUM portnum ,PIN_NUM pinnum, uint8_t *value){
+	
+	Dio_ErrorStatus loc_errorStatus = DIO_read(portnum,pinnum,value);
+	 if (loc_errorStatus == Dio_PortError){
+	
+		return Dio_PortError;
+ 23e:	81 e0       	ldi	r24, 0x01	; 1
+ 240:	08 95       	ret
+	
+	}else if (loc_errorStatus == Dio_PinError){
+	
+		return Dio_PinError;
+ 242:	82 e0       	ldi	r24, 0x02	; 2
+ 244:	08 95       	ret
+	
+		return Dio_NullPointer;
+	
+	}
+	else{
+		return Dio_Ok;
+ 246:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+ 248:	08 95       	ret
+
+0000024a <LED_init>:
+ *  Author: moham
+ */ 
+#include "led.h"
+
+Dio_ErrorStatus LED_init(PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_init(portNum,pinNum,OUTPUT);
+ 24a:	41 e0       	ldi	r20, 0x01	; 1
+ 24c:	0e 94 56 01 	call	0x2ac	; 0x2ac <DIO_init>
+	
+	if ( loc_errorStatus == Dio_PortError){
+ 250:	81 30       	cpi	r24, 0x01	; 1
+ 252:	29 f0       	breq	.+10     	; 0x25e <LED_init+0x14>
+		
+		return Dio_PortError;
+		
+	}else if (loc_errorStatus == Dio_PinError){
+ 254:	82 30       	cpi	r24, 0x02	; 2
+ 256:	29 f0       	breq	.+10     	; 0x262 <LED_init+0x18>
+	
+		return Dio_PinError;
+	
+	
+	}else if (loc_errorStatus == Dio_DirectionError){
+ 258:	84 30       	cpi	r24, 0x04	; 4
+ 25a:	29 f4       	brne	.+10     	; 0x266 <LED_init+0x1c>
+ 25c:	08 95       	ret
+Dio_ErrorStatus LED_init(PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_init(portNum,pinNum,OUTPUT);
+	
+	if ( loc_errorStatus == Dio_PortError){
+		
+		return Dio_PortError;
+ 25e:	81 e0       	ldi	r24, 0x01	; 1
+ 260:	08 95       	ret
+		
+	}else if (loc_errorStatus == Dio_PinError){
+	
+		return Dio_PinError;
+ 262:	82 e0       	ldi	r24, 0x02	; 2
+ 264:	08 95       	ret
+	}else if (loc_errorStatus == Dio_DirectionError){
+		
+		return Dio_DirectionError;
+		
+	}else{
+		return Dio_Ok;
+ 266:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+ 268:	08 95       	ret
+
+0000026a <LED_on>:
+
+Dio_ErrorStatus LED_on (PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_write(portNum,pinNum,HIGH);
+ 26a:	41 e0       	ldi	r20, 0x01	; 1
+ 26c:	0e 94 e5 01 	call	0x3ca	; 0x3ca <DIO_write>
+	
+	if ( loc_errorStatus == Dio_PortError){
+ 270:	81 30       	cpi	r24, 0x01	; 1
+ 272:	29 f0       	breq	.+10     	; 0x27e <LED_on+0x14>
+		
+		return Dio_PortError;
+		
+	}else if (loc_errorStatus == Dio_PinError){
+ 274:	82 30       	cpi	r24, 0x02	; 2
+ 276:	29 f0       	breq	.+10     	; 0x282 <LED_on+0x18>
+	
+	return Dio_PinError;
+	
+	
+	}
+	else if (loc_errorStatus == Dio_ValueError){
+ 278:	83 30       	cpi	r24, 0x03	; 3
+ 27a:	29 f4       	brne	.+10     	; 0x286 <LED_on+0x1c>
+ 27c:	08 95       	ret
+Dio_ErrorStatus LED_on (PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_write(portNum,pinNum,HIGH);
+	
+	if ( loc_errorStatus == Dio_PortError){
+		
+		return Dio_PortError;
+ 27e:	81 e0       	ldi	r24, 0x01	; 1
+ 280:	08 95       	ret
+		
+	}else if (loc_errorStatus == Dio_PinError){
+	
+	return Dio_PinError;
+ 282:	82 e0       	ldi	r24, 0x02	; 2
+ 284:	08 95       	ret
+	else if (loc_errorStatus == Dio_ValueError){
+		
+		return Dio_ValueError;
+		
+	}else{
+		return Dio_Ok;
+ 286:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+ 288:	08 95       	ret
+
+0000028a <LED_off>:
+
+Dio_ErrorStatus LED_off(PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_write(portNum,pinNum,LOW);	
+ 28a:	40 e0       	ldi	r20, 0x00	; 0
+ 28c:	0e 94 e5 01 	call	0x3ca	; 0x3ca <DIO_write>
+	
+	if ( loc_errorStatus == Dio_PortError){
+ 290:	81 30       	cpi	r24, 0x01	; 1
+ 292:	19 f0       	breq	.+6      	; 0x29a <LED_off+0x10>
+		
+		return Dio_PortError;
+		
+	}else if (loc_errorStatus == Dio_ValueError){
+ 294:	83 30       	cpi	r24, 0x03	; 3
+ 296:	19 f4       	brne	.+6      	; 0x29e <LED_off+0x14>
+ 298:	08 95       	ret
+Dio_ErrorStatus LED_off(PORT_NUM portNum , PIN_NUM pinNum){
+	Dio_ErrorStatus loc_errorStatus = DIO_write(portNum,pinNum,LOW);	
+	
+	if ( loc_errorStatus == Dio_PortError){
+		
+		return Dio_PortError;
+ 29a:	81 e0       	ldi	r24, 0x01	; 1
+ 29c:	08 95       	ret
+	}else if (loc_errorStatus == Dio_ValueError){
+		
+		return Dio_ValueError;
+		
+	}else{
+		return Dio_Ok;
+ 29e:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	
+}
+ 2a0:	08 95       	ret
+
+000002a2 <main>:
+int main(void)
+{
+	//DIO_uintTesting();
+	//LED_uintTesting();
+	//BUTTON_unitTesting();
+	Led_sequenceV1();
+ 2a2:	0e 94 3e 00 	call	0x7c	; 0x7c <Led_sequenceV1>
+}
+ 2a6:	80 e0       	ldi	r24, 0x00	; 0
+ 2a8:	90 e0       	ldi	r25, 0x00	; 0
+ 2aa:	08 95       	ret
+
+000002ac <DIO_init>:
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+ 2ac:	68 30       	cpi	r22, 0x08	; 8
+ 2ae:	08 f0       	brcs	.+2      	; 0x2b2 <DIO_init+0x6>
+ 2b0:	80 c0       	rjmp	.+256    	; 0x3b2 <DIO_init+0x106>
+		loc_ErrorStatus = Dio_PinError ;
+	}
+	else{	
+		switch (PortNum)
+ 2b2:	81 30       	cpi	r24, 0x01	; 1
+ 2b4:	31 f1       	breq	.+76     	; 0x302 <DIO_init+0x56>
+ 2b6:	38 f0       	brcs	.+14     	; 0x2c6 <DIO_init+0x1a>
+ 2b8:	82 30       	cpi	r24, 0x02	; 2
+ 2ba:	09 f4       	brne	.+2      	; 0x2be <DIO_init+0x12>
+ 2bc:	40 c0       	rjmp	.+128    	; 0x33e <DIO_init+0x92>
+ 2be:	83 30       	cpi	r24, 0x03	; 3
+ 2c0:	09 f4       	brne	.+2      	; 0x2c4 <DIO_init+0x18>
+ 2c2:	5a c0       	rjmp	.+180    	; 0x378 <DIO_init+0xcc>
+ 2c4:	78 c0       	rjmp	.+240    	; 0x3b6 <DIO_init+0x10a>
+		{
+			case PORT_A :
+					if (direction == INPUT)
+ 2c6:	41 11       	cpse	r20, r1
+ 2c8:	0d c0       	rjmp	.+26     	; 0x2e4 <DIO_init+0x38>
+					{
+						CLR_BIT(DDRA,PinNum);
+ 2ca:	2a b3       	in	r18, 0x1a	; 26
+ 2cc:	81 e0       	ldi	r24, 0x01	; 1
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	02 c0       	rjmp	.+4      	; 0x2d6 <DIO_init+0x2a>
+ 2d2:	88 0f       	add	r24, r24
+ 2d4:	99 1f       	adc	r25, r25
+ 2d6:	6a 95       	dec	r22
+ 2d8:	e2 f7       	brpl	.-8      	; 0x2d2 <DIO_init+0x26>
+ 2da:	80 95       	com	r24
+ 2dc:	82 23       	and	r24, r18
+ 2de:	8a bb       	out	0x1a, r24	; 26
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 2e0:	80 e0       	ldi	r24, 0x00	; 0
+ 2e2:	08 95       	ret
+		{
+			case PORT_A :
+					if (direction == INPUT)
+					{
+						CLR_BIT(DDRA,PinNum);
+					}else if ( direction == OUTPUT){
+ 2e4:	41 30       	cpi	r20, 0x01	; 1
+ 2e6:	09 f0       	breq	.+2      	; 0x2ea <DIO_init+0x3e>
+ 2e8:	68 c0       	rjmp	.+208    	; 0x3ba <DIO_init+0x10e>
+						SET_BIT(DDRA,PinNum);
+ 2ea:	2a b3       	in	r18, 0x1a	; 26
+ 2ec:	81 e0       	ldi	r24, 0x01	; 1
+ 2ee:	90 e0       	ldi	r25, 0x00	; 0
+ 2f0:	02 c0       	rjmp	.+4      	; 0x2f6 <DIO_init+0x4a>
+ 2f2:	88 0f       	add	r24, r24
+ 2f4:	99 1f       	adc	r25, r25
+ 2f6:	6a 95       	dec	r22
+ 2f8:	e2 f7       	brpl	.-8      	; 0x2f2 <DIO_init+0x46>
+ 2fa:	82 2b       	or	r24, r18
+ 2fc:	8a bb       	out	0x1a, r24	; 26
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 2fe:	80 e0       	ldi	r24, 0x00	; 0
+ 300:	08 95       	ret
+					}
+					break;
+		
+		
+			case PORT_B :
+					if (direction == INPUT)
+ 302:	41 11       	cpse	r20, r1
+ 304:	0d c0       	rjmp	.+26     	; 0x320 <DIO_init+0x74>
+					{
+						CLR_BIT(DDRB,PinNum);
+ 306:	27 b3       	in	r18, 0x17	; 23
+ 308:	81 e0       	ldi	r24, 0x01	; 1
+ 30a:	90 e0       	ldi	r25, 0x00	; 0
+ 30c:	02 c0       	rjmp	.+4      	; 0x312 <DIO_init+0x66>
+ 30e:	88 0f       	add	r24, r24
+ 310:	99 1f       	adc	r25, r25
+ 312:	6a 95       	dec	r22
+ 314:	e2 f7       	brpl	.-8      	; 0x30e <DIO_init+0x62>
+ 316:	80 95       	com	r24
+ 318:	82 23       	and	r24, r18
+ 31a:	87 bb       	out	0x17, r24	; 23
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 31c:	80 e0       	ldi	r24, 0x00	; 0
+ 31e:	08 95       	ret
+		
+			case PORT_B :
+					if (direction == INPUT)
+					{
+						CLR_BIT(DDRB,PinNum);
+					}else if ( direction == OUTPUT){
+ 320:	41 30       	cpi	r20, 0x01	; 1
+ 322:	09 f0       	breq	.+2      	; 0x326 <DIO_init+0x7a>
+ 324:	4c c0       	rjmp	.+152    	; 0x3be <DIO_init+0x112>
+						SET_BIT(DDRB,PinNum);
+ 326:	27 b3       	in	r18, 0x17	; 23
+ 328:	81 e0       	ldi	r24, 0x01	; 1
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	02 c0       	rjmp	.+4      	; 0x332 <DIO_init+0x86>
+ 32e:	88 0f       	add	r24, r24
+ 330:	99 1f       	adc	r25, r25
+ 332:	6a 95       	dec	r22
+ 334:	e2 f7       	brpl	.-8      	; 0x32e <DIO_init+0x82>
+ 336:	82 2b       	or	r24, r18
+ 338:	87 bb       	out	0x17, r24	; 23
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 33a:	80 e0       	ldi	r24, 0x00	; 0
+ 33c:	08 95       	ret
+					break;
+		
+		
+		
+			case PORT_C :
+					if (direction == INPUT)
+ 33e:	41 11       	cpse	r20, r1
+ 340:	0d c0       	rjmp	.+26     	; 0x35c <DIO_init+0xb0>
+					{
+						CLR_BIT(DDRC,PinNum);
+ 342:	24 b3       	in	r18, 0x14	; 20
+ 344:	81 e0       	ldi	r24, 0x01	; 1
+ 346:	90 e0       	ldi	r25, 0x00	; 0
+ 348:	02 c0       	rjmp	.+4      	; 0x34e <DIO_init+0xa2>
+ 34a:	88 0f       	add	r24, r24
+ 34c:	99 1f       	adc	r25, r25
+ 34e:	6a 95       	dec	r22
+ 350:	e2 f7       	brpl	.-8      	; 0x34a <DIO_init+0x9e>
+ 352:	80 95       	com	r24
+ 354:	82 23       	and	r24, r18
+ 356:	84 bb       	out	0x14, r24	; 20
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 358:	80 e0       	ldi	r24, 0x00	; 0
+ 35a:	08 95       	ret
+		
+			case PORT_C :
+					if (direction == INPUT)
+					{
+						CLR_BIT(DDRC,PinNum);
+					}else if ( direction == OUTPUT){
+ 35c:	41 30       	cpi	r20, 0x01	; 1
+ 35e:	89 f5       	brne	.+98     	; 0x3c2 <DIO_init+0x116>
+						SET_BIT(DDRC,PinNum);
+ 360:	24 b3       	in	r18, 0x14	; 20
+ 362:	81 e0       	ldi	r24, 0x01	; 1
+ 364:	90 e0       	ldi	r25, 0x00	; 0
+ 366:	02 c0       	rjmp	.+4      	; 0x36c <DIO_init+0xc0>
+ 368:	88 0f       	add	r24, r24
+ 36a:	99 1f       	adc	r25, r25
+ 36c:	6a 95       	dec	r22
+ 36e:	e2 f7       	brpl	.-8      	; 0x368 <DIO_init+0xbc>
+ 370:	82 2b       	or	r24, r18
+ 372:	84 bb       	out	0x14, r24	; 20
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 374:	80 e0       	ldi	r24, 0x00	; 0
+ 376:	08 95       	ret
+					break;
+		
+		
+		
+			case PORT_D :
+					if (direction == INPUT)
+ 378:	41 11       	cpse	r20, r1
+ 37a:	0d c0       	rjmp	.+26     	; 0x396 <DIO_init+0xea>
+					{
+						CLR_BIT(DDRD,PinNum);
+ 37c:	21 b3       	in	r18, 0x11	; 17
+ 37e:	81 e0       	ldi	r24, 0x01	; 1
+ 380:	90 e0       	ldi	r25, 0x00	; 0
+ 382:	02 c0       	rjmp	.+4      	; 0x388 <DIO_init+0xdc>
+ 384:	88 0f       	add	r24, r24
+ 386:	99 1f       	adc	r25, r25
+ 388:	6a 95       	dec	r22
+ 38a:	e2 f7       	brpl	.-8      	; 0x384 <DIO_init+0xd8>
+ 38c:	80 95       	com	r24
+ 38e:	82 23       	and	r24, r18
+ 390:	81 bb       	out	0x11, r24	; 17
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 392:	80 e0       	ldi	r24, 0x00	; 0
+ 394:	08 95       	ret
+		
+			case PORT_D :
+					if (direction == INPUT)
+					{
+						CLR_BIT(DDRD,PinNum);
+					}else if ( direction == OUTPUT){
+ 396:	41 30       	cpi	r20, 0x01	; 1
+ 398:	b1 f4       	brne	.+44     	; 0x3c6 <DIO_init+0x11a>
+						SET_BIT(DDRD,PinNum);
+ 39a:	21 b3       	in	r18, 0x11	; 17
+ 39c:	81 e0       	ldi	r24, 0x01	; 1
+ 39e:	90 e0       	ldi	r25, 0x00	; 0
+ 3a0:	02 c0       	rjmp	.+4      	; 0x3a6 <DIO_init+0xfa>
+ 3a2:	88 0f       	add	r24, r24
+ 3a4:	99 1f       	adc	r25, r25
+ 3a6:	6a 95       	dec	r22
+ 3a8:	e2 f7       	brpl	.-8      	; 0x3a2 <DIO_init+0xf6>
+ 3aa:	82 2b       	or	r24, r18
+ 3ac:	81 bb       	out	0x11, r24	; 17
+ */ 
+
+#include "dio.h"
+
+Dio_ErrorStatus DIO_init(PORT_NUM PortNum, PIN_NUM PinNum , PIN_DIR direction){
+	Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+ 3ae:	80 e0       	ldi	r24, 0x00	; 0
+ 3b0:	08 95       	ret
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+		loc_ErrorStatus = Dio_PinError ;
+ 3b2:	82 e0       	ldi	r24, 0x02	; 2
+ 3b4:	08 95       	ret
+					}
+					break;
+		
+			default:
+			//error handling
+					loc_ErrorStatus = Dio_PortError;
+ 3b6:	81 e0       	ldi	r24, 0x01	; 1
+ 3b8:	08 95       	ret
+						CLR_BIT(DDRA,PinNum);
+					}else if ( direction == OUTPUT){
+						SET_BIT(DDRA,PinNum);
+					}else{
+						// error handling
+						loc_ErrorStatus = Dio_DirectionError;
+ 3ba:	84 e0       	ldi	r24, 0x04	; 4
+ 3bc:	08 95       	ret
+						CLR_BIT(DDRB,PinNum);
+					}else if ( direction == OUTPUT){
+						SET_BIT(DDRB,PinNum);
+					}else{
+						// error handling
+						loc_ErrorStatus = Dio_DirectionError;
+ 3be:	84 e0       	ldi	r24, 0x04	; 4
+ 3c0:	08 95       	ret
+						CLR_BIT(DDRC,PinNum);
+					}else if ( direction == OUTPUT){
+						SET_BIT(DDRC,PinNum);
+					}else{
+						// error handling
+						loc_ErrorStatus = Dio_DirectionError;
+ 3c2:	84 e0       	ldi	r24, 0x04	; 4
+ 3c4:	08 95       	ret
+						CLR_BIT(DDRD,PinNum);
+					}else if ( direction == OUTPUT){
+						SET_BIT(DDRD,PinNum);
+					}else{
+						// error handling
+						loc_ErrorStatus = Dio_DirectionError;
+ 3c6:	84 e0       	ldi	r24, 0x04	; 4
+		}
+					}
+	
+	return loc_ErrorStatus ;
+
+}
+ 3c8:	08 95       	ret
+
+000003ca <DIO_write>:
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+ 3ca:	68 30       	cpi	r22, 0x08	; 8
+ 3cc:	08 f0       	brcs	.+2      	; 0x3d0 <DIO_write+0x6>
+ 3ce:	80 c0       	rjmp	.+256    	; 0x4d0 <__EEPROM_REGION_LENGTH__+0xd0>
+		loc_errorStatus = Dio_PinError ;
+	}
+	else{
+		switch (PortNum)
+ 3d0:	81 30       	cpi	r24, 0x01	; 1
+ 3d2:	31 f1       	breq	.+76     	; 0x420 <__EEPROM_REGION_LENGTH__+0x20>
+ 3d4:	38 f0       	brcs	.+14     	; 0x3e4 <DIO_write+0x1a>
+ 3d6:	82 30       	cpi	r24, 0x02	; 2
+ 3d8:	09 f4       	brne	.+2      	; 0x3dc <DIO_write+0x12>
+ 3da:	40 c0       	rjmp	.+128    	; 0x45c <__EEPROM_REGION_LENGTH__+0x5c>
+ 3dc:	83 30       	cpi	r24, 0x03	; 3
+ 3de:	09 f4       	brne	.+2      	; 0x3e2 <DIO_write+0x18>
+ 3e0:	5a c0       	rjmp	.+180    	; 0x496 <__EEPROM_REGION_LENGTH__+0x96>
+ 3e2:	78 c0       	rjmp	.+240    	; 0x4d4 <__EEPROM_REGION_LENGTH__+0xd4>
+		{
+			case PORT_A :
+			
+					if (value == LOW)
+ 3e4:	41 11       	cpse	r20, r1
+ 3e6:	0d c0       	rjmp	.+26     	; 0x402 <__EEPROM_REGION_LENGTH__+0x2>
+					{
+						CLR_BIT(PORTA,PinNum);
+ 3e8:	2b b3       	in	r18, 0x1b	; 27
+ 3ea:	81 e0       	ldi	r24, 0x01	; 1
+ 3ec:	90 e0       	ldi	r25, 0x00	; 0
+ 3ee:	02 c0       	rjmp	.+4      	; 0x3f4 <DIO_write+0x2a>
+ 3f0:	88 0f       	add	r24, r24
+ 3f2:	99 1f       	adc	r25, r25
+ 3f4:	6a 95       	dec	r22
+ 3f6:	e2 f7       	brpl	.-8      	; 0x3f0 <DIO_write+0x26>
+ 3f8:	80 95       	com	r24
+ 3fa:	82 23       	and	r24, r18
+ 3fc:	8b bb       	out	0x1b, r24	; 27
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 3fe:	80 e0       	ldi	r24, 0x00	; 0
+ 400:	08 95       	ret
+			
+					if (value == LOW)
+					{
+						CLR_BIT(PORTA,PinNum);
+			
+					}else if ( value == HIGH){
+ 402:	41 30       	cpi	r20, 0x01	; 1
+ 404:	09 f0       	breq	.+2      	; 0x408 <__EEPROM_REGION_LENGTH__+0x8>
+ 406:	68 c0       	rjmp	.+208    	; 0x4d8 <__EEPROM_REGION_LENGTH__+0xd8>
+			
+						SET_BIT(PORTA,PinNum);
+ 408:	2b b3       	in	r18, 0x1b	; 27
+ 40a:	81 e0       	ldi	r24, 0x01	; 1
+ 40c:	90 e0       	ldi	r25, 0x00	; 0
+ 40e:	02 c0       	rjmp	.+4      	; 0x414 <__EEPROM_REGION_LENGTH__+0x14>
+ 410:	88 0f       	add	r24, r24
+ 412:	99 1f       	adc	r25, r25
+ 414:	6a 95       	dec	r22
+ 416:	e2 f7       	brpl	.-8      	; 0x410 <__EEPROM_REGION_LENGTH__+0x10>
+ 418:	82 2b       	or	r24, r18
+ 41a:	8b bb       	out	0x1b, r24	; 27
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 41c:	80 e0       	ldi	r24, 0x00	; 0
+ 41e:	08 95       	ret
+						loc_errorStatus = Dio_ValueError ;
+					}
+					break;
+		
+			case PORT_B :
+					if (value == LOW)
+ 420:	41 11       	cpse	r20, r1
+ 422:	0d c0       	rjmp	.+26     	; 0x43e <__EEPROM_REGION_LENGTH__+0x3e>
+					{
+						CLR_BIT(PORTB,PinNum);
+ 424:	28 b3       	in	r18, 0x18	; 24
+ 426:	81 e0       	ldi	r24, 0x01	; 1
+ 428:	90 e0       	ldi	r25, 0x00	; 0
+ 42a:	02 c0       	rjmp	.+4      	; 0x430 <__EEPROM_REGION_LENGTH__+0x30>
+ 42c:	88 0f       	add	r24, r24
+ 42e:	99 1f       	adc	r25, r25
+ 430:	6a 95       	dec	r22
+ 432:	e2 f7       	brpl	.-8      	; 0x42c <__EEPROM_REGION_LENGTH__+0x2c>
+ 434:	80 95       	com	r24
+ 436:	82 23       	and	r24, r18
+ 438:	88 bb       	out	0x18, r24	; 24
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 43a:	80 e0       	ldi	r24, 0x00	; 0
+ 43c:	08 95       	ret
+			case PORT_B :
+					if (value == LOW)
+					{
+						CLR_BIT(PORTB,PinNum);
+			
+					}else if ( value == HIGH){
+ 43e:	41 30       	cpi	r20, 0x01	; 1
+ 440:	09 f0       	breq	.+2      	; 0x444 <__EEPROM_REGION_LENGTH__+0x44>
+ 442:	4c c0       	rjmp	.+152    	; 0x4dc <__EEPROM_REGION_LENGTH__+0xdc>
+			
+						SET_BIT(PORTB,PinNum);
+ 444:	28 b3       	in	r18, 0x18	; 24
+ 446:	81 e0       	ldi	r24, 0x01	; 1
+ 448:	90 e0       	ldi	r25, 0x00	; 0
+ 44a:	02 c0       	rjmp	.+4      	; 0x450 <__EEPROM_REGION_LENGTH__+0x50>
+ 44c:	88 0f       	add	r24, r24
+ 44e:	99 1f       	adc	r25, r25
+ 450:	6a 95       	dec	r22
+ 452:	e2 f7       	brpl	.-8      	; 0x44c <__EEPROM_REGION_LENGTH__+0x4c>
+ 454:	82 2b       	or	r24, r18
+ 456:	88 bb       	out	0x18, r24	; 24
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 458:	80 e0       	ldi	r24, 0x00	; 0
+ 45a:	08 95       	ret
+						loc_errorStatus = Dio_ValueError ;
+					}
+					break;
+		
+			case PORT_C :
+					if (value == LOW)
+ 45c:	41 11       	cpse	r20, r1
+ 45e:	0d c0       	rjmp	.+26     	; 0x47a <__EEPROM_REGION_LENGTH__+0x7a>
+					{
+						CLR_BIT(PORTC,PinNum);
+ 460:	25 b3       	in	r18, 0x15	; 21
+ 462:	81 e0       	ldi	r24, 0x01	; 1
+ 464:	90 e0       	ldi	r25, 0x00	; 0
+ 466:	02 c0       	rjmp	.+4      	; 0x46c <__EEPROM_REGION_LENGTH__+0x6c>
+ 468:	88 0f       	add	r24, r24
+ 46a:	99 1f       	adc	r25, r25
+ 46c:	6a 95       	dec	r22
+ 46e:	e2 f7       	brpl	.-8      	; 0x468 <__EEPROM_REGION_LENGTH__+0x68>
+ 470:	80 95       	com	r24
+ 472:	82 23       	and	r24, r18
+ 474:	85 bb       	out	0x15, r24	; 21
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 476:	80 e0       	ldi	r24, 0x00	; 0
+ 478:	08 95       	ret
+			case PORT_C :
+					if (value == LOW)
+					{
+						CLR_BIT(PORTC,PinNum);
+			
+					}else if ( value == HIGH){
+ 47a:	41 30       	cpi	r20, 0x01	; 1
+ 47c:	89 f5       	brne	.+98     	; 0x4e0 <__EEPROM_REGION_LENGTH__+0xe0>
+			
+						SET_BIT(PORTC,PinNum);
+ 47e:	25 b3       	in	r18, 0x15	; 21
+ 480:	81 e0       	ldi	r24, 0x01	; 1
+ 482:	90 e0       	ldi	r25, 0x00	; 0
+ 484:	02 c0       	rjmp	.+4      	; 0x48a <__EEPROM_REGION_LENGTH__+0x8a>
+ 486:	88 0f       	add	r24, r24
+ 488:	99 1f       	adc	r25, r25
+ 48a:	6a 95       	dec	r22
+ 48c:	e2 f7       	brpl	.-8      	; 0x486 <__EEPROM_REGION_LENGTH__+0x86>
+ 48e:	82 2b       	or	r24, r18
+ 490:	85 bb       	out	0x15, r24	; 21
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 492:	80 e0       	ldi	r24, 0x00	; 0
+ 494:	08 95       	ret
+						loc_errorStatus = Dio_ValueError ;
+					}
+					break;
+		
+			case PORT_D :
+					if (value == LOW)
+ 496:	41 11       	cpse	r20, r1
+ 498:	0d c0       	rjmp	.+26     	; 0x4b4 <__EEPROM_REGION_LENGTH__+0xb4>
+					{
+						CLR_BIT(PORTD,PinNum);
+ 49a:	22 b3       	in	r18, 0x12	; 18
+ 49c:	81 e0       	ldi	r24, 0x01	; 1
+ 49e:	90 e0       	ldi	r25, 0x00	; 0
+ 4a0:	02 c0       	rjmp	.+4      	; 0x4a6 <__EEPROM_REGION_LENGTH__+0xa6>
+ 4a2:	88 0f       	add	r24, r24
+ 4a4:	99 1f       	adc	r25, r25
+ 4a6:	6a 95       	dec	r22
+ 4a8:	e2 f7       	brpl	.-8      	; 0x4a2 <__EEPROM_REGION_LENGTH__+0xa2>
+ 4aa:	80 95       	com	r24
+ 4ac:	82 23       	and	r24, r18
+ 4ae:	82 bb       	out	0x12, r24	; 18
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 4b0:	80 e0       	ldi	r24, 0x00	; 0
+ 4b2:	08 95       	ret
+			case PORT_D :
+					if (value == LOW)
+					{
+						CLR_BIT(PORTD,PinNum);
+			
+					}else if ( value == HIGH){
+ 4b4:	41 30       	cpi	r20, 0x01	; 1
+ 4b6:	b1 f4       	brne	.+44     	; 0x4e4 <__EEPROM_REGION_LENGTH__+0xe4>
+			
+						SET_BIT(PORTD,PinNum);
+ 4b8:	22 b3       	in	r18, 0x12	; 18
+ 4ba:	81 e0       	ldi	r24, 0x01	; 1
+ 4bc:	90 e0       	ldi	r25, 0x00	; 0
+ 4be:	02 c0       	rjmp	.+4      	; 0x4c4 <__EEPROM_REGION_LENGTH__+0xc4>
+ 4c0:	88 0f       	add	r24, r24
+ 4c2:	99 1f       	adc	r25, r25
+ 4c4:	6a 95       	dec	r22
+ 4c6:	e2 f7       	brpl	.-8      	; 0x4c0 <__EEPROM_REGION_LENGTH__+0xc0>
+ 4c8:	82 2b       	or	r24, r18
+ 4ca:	82 bb       	out	0x12, r24	; 18
+
+}
+
+
+Dio_ErrorStatus DIO_write(PORT_NUM PortNum, PIN_NUM PinNum , VALUE value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 4cc:	80 e0       	ldi	r24, 0x00	; 0
+ 4ce:	08 95       	ret
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+		loc_errorStatus = Dio_PinError ;
+ 4d0:	82 e0       	ldi	r24, 0x02	; 2
+ 4d2:	08 95       	ret
+					break;
+		
+		
+			default:
+			//error handling
+				loc_errorStatus = Dio_PortError ;
+ 4d4:	81 e0       	ldi	r24, 0x01	; 1
+ 4d6:	08 95       	ret
+					}else if ( value == HIGH){
+			
+						SET_BIT(PORTA,PinNum);
+					}else{
+						// error handling
+						loc_errorStatus = Dio_ValueError ;
+ 4d8:	83 e0       	ldi	r24, 0x03	; 3
+ 4da:	08 95       	ret
+					}else if ( value == HIGH){
+			
+						SET_BIT(PORTB,PinNum);
+					}else{
+						// error handling
+						loc_errorStatus = Dio_ValueError ;
+ 4dc:	83 e0       	ldi	r24, 0x03	; 3
+ 4de:	08 95       	ret
+					}else if ( value == HIGH){
+			
+						SET_BIT(PORTC,PinNum);
+					}else{
+						// error handling
+						loc_errorStatus = Dio_ValueError ;
+ 4e0:	83 e0       	ldi	r24, 0x03	; 3
+ 4e2:	08 95       	ret
+			
+						SET_BIT(PORTD,PinNum);
+			
+					}else{
+						// error handling
+						loc_errorStatus = Dio_ValueError ;
+ 4e4:	83 e0       	ldi	r24, 0x03	; 3
+				break;
+		
+				}
+		}
+	return loc_errorStatus;
+	}
+ 4e6:	08 95       	ret
+
+000004e8 <DIO_read>:
+
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+ 4e8:	68 30       	cpi	r22, 0x08	; 8
+ 4ea:	d8 f5       	brcc	.+118    	; 0x562 <DIO_read+0x7a>
+		loc_errorStatus = Dio_PinError ;
+	}
+	else{
+	
+		if(value == 0){
+ 4ec:	41 15       	cp	r20, r1
+ 4ee:	51 05       	cpc	r21, r1
+ 4f0:	d1 f1       	breq	.+116    	; 0x566 <DIO_read+0x7e>
+			loc_errorStatus = Dio_NullPointer;
+		}
+		else{
+			switch (PortNum)
+ 4f2:	81 30       	cpi	r24, 0x01	; 1
+ 4f4:	91 f0       	breq	.+36     	; 0x51a <DIO_read+0x32>
+ 4f6:	28 f0       	brcs	.+10     	; 0x502 <DIO_read+0x1a>
+ 4f8:	82 30       	cpi	r24, 0x02	; 2
+ 4fa:	d9 f0       	breq	.+54     	; 0x532 <DIO_read+0x4a>
+ 4fc:	83 30       	cpi	r24, 0x03	; 3
+ 4fe:	29 f1       	breq	.+74     	; 0x54a <DIO_read+0x62>
+ 500:	34 c0       	rjmp	.+104    	; 0x56a <DIO_read+0x82>
+			{
+				case PORT_A :
+						*value = GET_BIT(PINA,PinNum);
+ 502:	89 b3       	in	r24, 0x19	; 25
+ 504:	90 e0       	ldi	r25, 0x00	; 0
+ 506:	02 c0       	rjmp	.+4      	; 0x50c <DIO_read+0x24>
+ 508:	95 95       	asr	r25
+ 50a:	87 95       	ror	r24
+ 50c:	6a 95       	dec	r22
+ 50e:	e2 f7       	brpl	.-8      	; 0x508 <DIO_read+0x20>
+ 510:	81 70       	andi	r24, 0x01	; 1
+ 512:	fa 01       	movw	r30, r20
+ 514:	80 83       	st	Z, r24
+	}
+
+
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 516:	80 e0       	ldi	r24, 0x00	; 0
+		else{
+			switch (PortNum)
+			{
+				case PORT_A :
+						*value = GET_BIT(PINA,PinNum);
+						break;
+ 518:	08 95       	ret
+		
+				case PORT_B :
+						*value = GET_BIT(PINB,PinNum);
+ 51a:	86 b3       	in	r24, 0x16	; 22
+ 51c:	90 e0       	ldi	r25, 0x00	; 0
+ 51e:	02 c0       	rjmp	.+4      	; 0x524 <DIO_read+0x3c>
+ 520:	95 95       	asr	r25
+ 522:	87 95       	ror	r24
+ 524:	6a 95       	dec	r22
+ 526:	e2 f7       	brpl	.-8      	; 0x520 <DIO_read+0x38>
+ 528:	81 70       	andi	r24, 0x01	; 1
+ 52a:	fa 01       	movw	r30, r20
+ 52c:	80 83       	st	Z, r24
+	}
+
+
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 52e:	80 e0       	ldi	r24, 0x00	; 0
+						*value = GET_BIT(PINA,PinNum);
+						break;
+		
+				case PORT_B :
+						*value = GET_BIT(PINB,PinNum);
+						break;
+ 530:	08 95       	ret
+				
+				case PORT_C :
+						*value = GET_BIT(PINC,PinNum);
+ 532:	83 b3       	in	r24, 0x13	; 19
+ 534:	90 e0       	ldi	r25, 0x00	; 0
+ 536:	02 c0       	rjmp	.+4      	; 0x53c <DIO_read+0x54>
+ 538:	95 95       	asr	r25
+ 53a:	87 95       	ror	r24
+ 53c:	6a 95       	dec	r22
+ 53e:	e2 f7       	brpl	.-8      	; 0x538 <DIO_read+0x50>
+ 540:	81 70       	andi	r24, 0x01	; 1
+ 542:	fa 01       	movw	r30, r20
+ 544:	80 83       	st	Z, r24
+	}
+
+
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 546:	80 e0       	ldi	r24, 0x00	; 0
+						*value = GET_BIT(PINB,PinNum);
+						break;
+				
+				case PORT_C :
+						*value = GET_BIT(PINC,PinNum);
+						break;
+ 548:	08 95       	ret
+		
+				case PORT_D :
+						*value = GET_BIT(PIND,PinNum);
+ 54a:	80 b3       	in	r24, 0x10	; 16
+ 54c:	90 e0       	ldi	r25, 0x00	; 0
+ 54e:	02 c0       	rjmp	.+4      	; 0x554 <DIO_read+0x6c>
+ 550:	95 95       	asr	r25
+ 552:	87 95       	ror	r24
+ 554:	6a 95       	dec	r22
+ 556:	e2 f7       	brpl	.-8      	; 0x550 <DIO_read+0x68>
+ 558:	81 70       	andi	r24, 0x01	; 1
+ 55a:	fa 01       	movw	r30, r20
+ 55c:	80 83       	st	Z, r24
+	}
+
+
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+ 55e:	80 e0       	ldi	r24, 0x00	; 0
+						*value = GET_BIT(PINC,PinNum);
+						break;
+		
+				case PORT_D :
+						*value = GET_BIT(PIND,PinNum);
+						break;
+ 560:	08 95       	ret
+
+Dio_ErrorStatus DIO_read(PORT_NUM PortNum, PIN_NUM PinNum , uint8_t* value){
+	Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	
+	if(PinNum<PIN_0 || PinNum>PIN_7){
+		loc_errorStatus = Dio_PinError ;
+ 562:	82 e0       	ldi	r24, 0x02	; 2
+ 564:	08 95       	ret
+	}
+	else{
+	
+		if(value == 0){
+			loc_errorStatus = Dio_NullPointer;
+ 566:	85 e0       	ldi	r24, 0x05	; 5
+ 568:	08 95       	ret
+						*value = GET_BIT(PIND,PinNum);
+						break;
+		
+				default:
+				//error handling
+						loc_errorStatus = Dio_PortError;
+ 56a:	81 e0       	ldi	r24, 0x01	; 1
+	
+			}
+	}
+	}
+	return loc_errorStatus;
+}
+ 56c:	08 95       	ret
+
+0000056e <_exit>:
+ 56e:	f8 94       	cli
+
+00000570 <__stop_program>:
+ 570:	ff cf       	rjmp	.-2      	; 0x570 <__stop_program>
