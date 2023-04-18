@@ -2,8 +2,8 @@
 
 #ifndef dio_H_
 #define dio_H_
-#include "../../SERVICE/utiles.h"
-#include "../memorymap.h"
+#include "../../SERVICE/UTILES.h"
+#include "../MEMORYMAP.h"
 
 typedef enum{
 	pina0=0,

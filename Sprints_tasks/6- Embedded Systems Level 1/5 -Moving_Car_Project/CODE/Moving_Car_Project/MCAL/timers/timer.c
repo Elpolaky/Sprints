@@ -313,15 +313,31 @@ Timer_ErrorStatus TIMER_2_OvfNum(double overflow){
 }
 
 
-
+double ovfNum2  ;
+double t2 ;
 void TIMER_2_DELAY_MS(double time_ms){
-	double ovfNum2  ;
-	double t2 ;
+	
 	t2 = time_ms/1000 ;
 	ovfNum2 = ceil (t2 / 0.000256) ;
 	TIMER_2_init(NORMAL_MODE);
 	TIMER_2_setIntialValue(0);
-	TIMER_2_start(PRECALER_1);
+	//TIMER_2_start(PRECALER_1);
+	set_bit(TCCR2,CS00);
 	TIMER_2_OvfNum(ovfNum2);
 	
 }
+
+Timer_ErrorStatus PWM_Init() {
+	return TIMER_0_init(NORMAL_MODE);
+}
+void PWM_Start() {
+	TIMER_0_start(PRECALER_1);
+}
+void PWM_Stop() {
+	TIMER_0_stop();
+}
+void PWM_SetDutyCycle(uint8_t dutyCycle) {
+	uint8_t value = (uint8_t)((dutyCycle / 100) * 256);
+	TIMER_0_setIntialValue(value);
+}
+

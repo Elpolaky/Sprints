@@ -48,3 +48,15 @@ void Car_Rotating(void)
 	DIO_WRITEPIN(motor4_0,LOW);
 	DIO_WRITEPIN(motor4_1,HIGH);
 }
+
+void car_Stop(void){
+	DIO_WRITEPIN(motor1_0,LOW);          //this is used to provide voltage to the +ve pin of the motor
+	DIO_WRITEPIN(motor1_1,LOW);           //this is used to provide the ground to the -ve pin of
+	DIO_WRITEPIN(motor2_0,LOW);
+	DIO_WRITEPIN(motor2_1,LOW);
+	DIO_WRITEPIN(motor3_0,LOW);
+	DIO_WRITEPIN(motor3_1,LOW);
+	DIO_WRITEPIN(motor4_0,LOW);
+	DIO_WRITEPIN(motor4_1,LOW);
+	
+}

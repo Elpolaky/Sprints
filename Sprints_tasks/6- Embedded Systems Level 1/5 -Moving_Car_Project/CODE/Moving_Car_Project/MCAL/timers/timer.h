@@ -71,5 +71,10 @@ Timer_ErrorStatus TIMER_2_setIntialValue(uint8_t value);
 Timer_ErrorStatus TIMER_2_OvfNum(double overflow);
 void TIMER_2_DELAY_MS(double _delay);
 
+/***********************************PWM*************************************************/
+Timer_ErrorStatus PWM_Init();
+void PWM_Start();
+void PWM_Stop();
+void PWM_SetDutyCycle(uint8_t dutyCycle);
 
 #endif /* TIMER_H_ */

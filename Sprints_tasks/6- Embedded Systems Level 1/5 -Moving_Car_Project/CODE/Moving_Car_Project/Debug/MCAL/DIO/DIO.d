@@ -1,11 +1,11 @@
-MCAL/dio/dio.d MCAL/dio/dio.o: ../MCAL/dio/dio.c ../MCAL/dio/dio.h \
- ../MCAL/dio/../../SERVICE/utiles.h ../MCAL/dio/../memorymap.h \
- ../MCAL/dio/../../SERVICE/std_types.h
+MCAL/DIO/DIO.d MCAL/DIO/DIO.o: ../MCAL/DIO/DIO.c ../MCAL/DIO/DIO.h \
+ ../MCAL/DIO/../../SERVICE/UTILES.h ../MCAL/DIO/../MEMORYMAP.h \
+ ../MCAL/DIO/../../SERVICE/std_types.h
 
-../MCAL/dio/dio.h:
+../MCAL/DIO/DIO.h:
 
-../MCAL/dio/../../SERVICE/utiles.h:
+../MCAL/DIO/../../SERVICE/UTILES.h:
 
-../MCAL/dio/../memorymap.h:
+../MCAL/DIO/../MEMORYMAP.h:
 
-../MCAL/dio/../../SERVICE/std_types.h:
+../MCAL/DIO/../../SERVICE/std_types.h:
