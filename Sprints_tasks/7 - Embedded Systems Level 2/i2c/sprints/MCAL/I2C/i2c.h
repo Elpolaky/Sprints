@@ -99,4 +99,7 @@ void I2C_stop();
 uint8_t I2c_Restart();
 void EEPROM_Write (uint8_t *data, uint8_t* _addres);
 void EEPROM_Read (uint8_t *data ,uint8_t _address) ;
+
+
+void EEPROM_Writeseq ( uint8_t *data ,uint8_t _address);
 #endif /* I2C_H_ */

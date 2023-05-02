@@ -24,17 +24,27 @@ void app_start(){
 	uint8_t data =20 ;
 	uint8_t data2 = 0 ;
 	uint8_t ad1 = 0x00 ;
-	uint8_t str[10] = {1,2,3};
+	uint8_t str2[17] = "1234567887654321";
+	uint8_t str[16] = {};
+		
+	//EEPROM_Writeseq ( str2 ,&ad1);
+	for (uint8_t i =0 ; i <16 ; i++)
+	{
+		EEPROM_Read(str+i ,ad1);
+		LCD_4_Bit_SendChar(str[i]);
+	}
+	/*		
+	 
+		EEPROM_Read(str+1 ,ad1);
+		LCD_4_Bit_SendChar(str[1]);
+		EEPROM_Read(str+2 ,ad1);
+		LCD_4_Bit_SendChar(str[2]);
 
-//	EEPROM_Write(&data , &ad1);
+
+//	
 
 
-	EEPROM_Read(str ,ad1);
-	LCD_Write_Number((uint32)str[0]);
-	EEPROM_Read(str+1 ,ad1);
-	LCD_Write_Number((uint32)str[1]);
-	EEPROM_Read(str+2 ,ad1);
-	LCD_Write_Number((uint32)str[2]);
+
 	
 /*
 	if(I2C_start()==EVENT_OK){

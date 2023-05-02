@@ -241,3 +241,26 @@ void EEPROM_Read ( uint8_t *data ,uint8_t _address) {
 	
 	
 }
+void EEPROM_Writeseq ( uint8_t *data ,uint8_t _address) {
+	if(I2C_start()==EVENT_OK){
+		
+		if(I2C_addressEvent(0xA0,WRITE)==AD_W_SENT_ACK_OK){
+			
+			if(I2C_sendData(_address)== DATA_SENT_ACK_OK){
+					for (uint8_t i = 0 ; i<16 ; i++)
+					{
+						if(I2C_sendData(&data[i])== DATA_SENT_ACK_OK){
+						}
+				
+							
+						}
+				
+			}
+			I2C_stop();
+		}
+		
+	}
+	
+	
+}
+
