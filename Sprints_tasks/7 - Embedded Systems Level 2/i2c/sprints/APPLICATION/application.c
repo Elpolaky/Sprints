@@ -13,23 +13,29 @@ uint8_t bell3[8] = {0x04, 0x0E ,0x0E ,0x0E ,0x1f ,0x00 ,0x01 ,0x00};
 
 uint8_t key;
 void app_init(void){
+TIMER_0_init(NORMAL_MODE);
 LCD_4_Bit_init();
 I2C_init(I2C_PRESCALER_1);
+LED_init(PORT_A,PIN_0);
 }
 
 
 void app_start(){
-	uint8_t data ='a' ;
-	uint8_t data2 =0 ;
+	uint8_t data =20 ;
+	uint8_t data2 = 0 ;
 	uint8_t ad1 = 0x00 ;
+	uint8_t str[10] = {1,2,3};
 
-EEPROM_Write(&data , &ad1);
-
-EEPROM_Read(&data2 ,&ad1);
-
-LCD_4_Bit_SendChar(data2);
+//	EEPROM_Write(&data , &ad1);
 
 
+	EEPROM_Read(str ,ad1);
+	LCD_Write_Number((uint32)str[0]);
+	EEPROM_Read(str+1 ,ad1);
+	LCD_Write_Number((uint32)str[1]);
+	EEPROM_Read(str+2 ,ad1);
+	LCD_Write_Number((uint32)str[2]);
+	
 /*
 	if(I2C_start()==EVENT_OK){
 		

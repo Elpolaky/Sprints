@@ -16,6 +16,8 @@
 #include "../MCAL/timer/timer.h"
 */
 #include "../MCAL/DIO DRIVER/dio.h"
+#include "../MCAL/timer/timer.h"
+#include "../ECUAL/LED DRIVER/led.h"
 #include "../MCAL/I2C/i2c.h"
 /**************************************************/
 //			 FUNCTIONS PROTOTYPES

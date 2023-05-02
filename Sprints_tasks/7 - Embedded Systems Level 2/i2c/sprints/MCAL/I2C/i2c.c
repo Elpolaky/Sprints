@@ -210,7 +210,7 @@ void EEPROM_Write (uint8_t *data, uint8_t *_address){
 	
 	
 }
-void EEPROM_Read ( uint8_t *data ,uint8_t* _address) {
+void EEPROM_Read ( uint8_t *data ,uint8_t _address) {
 
 	if(I2C_start()==EVENT_OK){
 	
@@ -222,18 +222,18 @@ void EEPROM_Read ( uint8_t *data ,uint8_t* _address) {
 					
 					if(I2C_addressEvent(0xA0,READ)==AD_R_SENT_ACK_OK){
 						
-						if(I2C_sendData(data)== DATA_SENT_NACK_OK){
+						if(I2C_receiveData(data,NACK)== DATA_RECIEVE_NACK_OK){
 							
 							I2C_stop();
 							
 						}
-					}
+				//	}
 					
 			//	}
 				
-			//}
+		//	}
 			
-		//}
+		}
 		
 		
 		
