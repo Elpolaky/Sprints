@@ -11,7 +11,7 @@
 
 #include "uartTypes.h"
 
-#define UART_NUM   1   // Number of UART in AVR
+#define UART_NUM   1   // Number of UART in microcontroller
 
 typedef struct
 {
@@ -26,6 +26,6 @@ typedef struct
 
 }ST_UART_Cfg;
 
-extern ST_UART_Cfg Uart_Cfg[UART_NUM]
+extern ST_UART_Cfg Uart_Cfg[UART_NUM];
 
 #endif /* UARTCONFIG_H_ */

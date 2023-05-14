@@ -6,10 +6,11 @@
  */ 
 #include "uartConfig.h"
 
-ST_UART_Cfg Uart_Cfg =
+ST_UART_Cfg Uart_Cfg[UART_NUM] ={
 	
 	{
 		TX_ENABLE , NORMAL_SPEED , BAUD_9600 , NO_PARITY , ASYNC , ONE_STOP_BIT , _8_BITS 
+	},
+	
+	
 	};
-	
-	

@@ -18,7 +18,7 @@
 #include "../../Utilities/registers.h"
 #include "../../Utilities/bit_manipulation.h"
 #include "../../Utilities/types.h"
-#include <avr/io.h>
+
 /*************************************************/
 //					MACROS
 /**************************************************/

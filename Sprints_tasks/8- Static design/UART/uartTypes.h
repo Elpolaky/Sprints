@@ -23,12 +23,12 @@ typedef enum{
 
 
 typedef enum{
-	BAUD_2400,
-	BAUD_4800,
-	BAUD_9600,
-	BAUD_14400,
-	BAUD_19200,
-	BAUD_28800
+	BAUD_2400  = 2400,
+	BAUD_4800  =  4800,
+	BAUD_9600  =  9600 ,
+	BAUD_14400 = 14400,
+	BAUD_19200 = 19200 ,
+	BAUD_28800 = 28800
 }EN_BAUD_RATE;
 
 typedef enum{
