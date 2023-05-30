@@ -136,7 +136,7 @@ typedef enum {
   *
   *
   * @return      SOS_STATUS_ADD_SUCCESS                  :   In case of Successful Operation
-  *              SOS_STATUS_INVALID						 :   In case of scheduler didnt stop
+  *              SOS_INVALID_STATE					 :   In case of scheduler didnt stop
   *			
   ********************************************************************************************************************************/
   enu_system_t sos_disable (void);
