@@ -703,7 +703,7 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x214e
+.debug_info     0x00000000     0x2136
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_info    0x000004e6      0x7d0 APPLICATION/application.o
@@ -712,9 +712,9 @@ END GROUP
  .debug_info    0x0000165a       0xae main.o
  .debug_info    0x00001708      0x5e2 MCAL/DIO DRIVER/dio.o
  .debug_info    0x00001cea      0x1a5 MCAL/EXT_INTERRUPT/Ext_interrupt.o
- .debug_info    0x00001e8f      0x2bf MCAL/timer/timer.o
+ .debug_info    0x00001e8f      0x2a7 MCAL/timer/timer.o
 
-.debug_abbrev   0x00000000      0xad7
+.debug_abbrev   0x00000000      0xabb
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_abbrev  0x000004a3       0xd3 APPLICATION/application.o
@@ -723,9 +723,9 @@ END GROUP
  .debug_abbrev  0x0000074d       0x68 main.o
  .debug_abbrev  0x000007b5       0xf7 MCAL/DIO DRIVER/dio.o
  .debug_abbrev  0x000008ac       0xd1 MCAL/EXT_INTERRUPT/Ext_interrupt.o
- .debug_abbrev  0x0000097d      0x15a MCAL/timer/timer.o
+ .debug_abbrev  0x0000097d      0x13e MCAL/timer/timer.o
 
-.debug_line     0x00000000     0x10fb
+.debug_line     0x00000000     0x114d
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_line    0x00000116      0x3f9 APPLICATION/application.o
@@ -734,7 +734,7 @@ END GROUP
  .debug_line    0x000008b0       0x6b main.o
  .debug_line    0x0000091b      0x3c8 MCAL/DIO DRIVER/dio.o
  .debug_line    0x00000ce3      0x187 MCAL/EXT_INTERRUPT/Ext_interrupt.o
- .debug_line    0x00000e6a      0x291 MCAL/timer/timer.o
+ .debug_line    0x00000e6a      0x2e3 MCAL/timer/timer.o
 
 .debug_frame    0x00000000      0x39c
  *(.debug_frame)
@@ -746,7 +746,7 @@ END GROUP
  .debug_frame   0x000001a4      0x15c MCAL/EXT_INTERRUPT/Ext_interrupt.o
  .debug_frame   0x00000300       0x9c MCAL/timer/timer.o
 
-.debug_str      0x00000000      0x921
+.debug_str      0x00000000      0x995
  *(.debug_str)
  .debug_str     0x00000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32a/avr5/crtatmega32a.o
  .debug_str     0x00000196      0x28b APPLICATION/application.o
@@ -761,8 +761,8 @@ END GROUP
                                 0x2d2 (size before relaxing)
  .debug_str     0x000006ad       0xf6 MCAL/EXT_INTERRUPT/Ext_interrupt.o
                                 0x23a (size before relaxing)
- .debug_str     0x000007a3      0x17e MCAL/timer/timer.o
-                                0x2ed (size before relaxing)
+ .debug_str     0x000007a3      0x1f2 MCAL/timer/timer.o
+                                0x2e9 (size before relaxing)
 
 .debug_loc      0x00000000      0xdc4
  *(.debug_loc)

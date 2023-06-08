@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000001a0  00000000  00000000  00000f64  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000214e  00000000  00000000  00001104  2**0
+  6 .debug_info   00002136  00000000  00000000  00001104  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000ad7  00000000  00000000  00003252  2**0
+  7 .debug_abbrev 00000abb  00000000  00000000  0000323a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000010fb  00000000  00000000  00003d29  2**0
+  8 .debug_line   0000114d  00000000  00000000  00003cf5  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000039c  00000000  00000000  00004e24  2**2
+  9 .debug_frame  0000039c  00000000  00000000  00004e44  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000921  00000000  00000000  000051c0  2**0
+ 10 .debug_str    00000995  00000000  00000000  000051e0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000dc4  00000000  00000000  00005ae1  2**0
+ 11 .debug_loc    00000dc4  00000000  00000000  00005b75  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000130  00000000  00000000  000068a5  2**0
+ 12 .debug_ranges 00000130  00000000  00000000  00006939  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -96,38 +96,19 @@ Disassembly of section .text:
   8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000092 <SetFlag>:
-uint8_t flag = 0,flag2=0 ,error_value=0 ,error_value2=0 ;
-float delay_on=100,delay_off=900;
-
-void SetFlag(){
-	
-	if(flag <7){
   92:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <flag>
   96:	87 30       	cpi	r24, 0x07	; 7
   98:	20 f4       	brcc	.+8      	; 0xa2 <SetFlag+0x10>
-		
-		flag++;
   9a:	8f 5f       	subi	r24, 0xFF	; 255
   9c:	80 93 6d 00 	sts	0x006D, r24	; 0x80006d <flag>
   a0:	08 95       	ret
-		
-	}else{
-		
-		flag = 0;
   a2:	10 92 6d 00 	sts	0x006D, r1	; 0x80006d <flag>
   a6:	08 95       	ret
 
 000000a8 <SetDelay>:
-	
-}
-
-void SetDelay(){
-	
-	flag2++;
   a8:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <flag2>
   ac:	8f 5f       	subi	r24, 0xFF	; 255
   ae:	80 93 6c 00 	sts	0x006C, r24	; 0x80006c <flag2>
-	switch(flag2){
   b2:	82 30       	cpi	r24, 0x02	; 2
   b4:	19 f1       	breq	.+70     	; 0xfc <SetDelay+0x54>
   b6:	18 f4       	brcc	.+6      	; 0xbe <SetDelay+0x16>
@@ -140,10 +121,6 @@ void SetDelay(){
   c4:	09 f4       	brne	.+2      	; 0xc8 <SetDelay+0x20>
   c6:	48 c0       	rjmp	.+144    	; 0x158 <SetDelay+0xb0>
   c8:	60 c0       	rjmp	.+192    	; 0x18a <SetDelay+0xe2>
-	
-		
-	case 1 :
-	delay_on=200;
   ca:	80 e0       	ldi	r24, 0x00	; 0
   cc:	90 e0       	ldi	r25, 0x00	; 0
   ce:	a8 e4       	ldi	r26, 0x48	; 72
@@ -152,7 +129,6 @@ void SetDelay(){
   d6:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <delay_on+0x1>
   da:	a0 93 66 00 	sts	0x0066, r26	; 0x800066 <delay_on+0x2>
   de:	b0 93 67 00 	sts	0x0067, r27	; 0x800067 <delay_on+0x3>
-	delay_off=800;
   e2:	80 e0       	ldi	r24, 0x00	; 0
   e4:	90 e0       	ldi	r25, 0x00	; 0
   e6:	a8 e4       	ldi	r26, 0x48	; 72
@@ -161,11 +137,7 @@ void SetDelay(){
   ee:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
   f2:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
   f6:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
-	break;
   fa:	08 95       	ret
-	
-	case 2 :
-	delay_on=300;
   fc:	80 e0       	ldi	r24, 0x00	; 0
   fe:	90 e0       	ldi	r25, 0x00	; 0
  100:	a6 e9       	ldi	r26, 0x96	; 150
@@ -174,7 +146,6 @@ void SetDelay(){
  108:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <delay_on+0x1>
  10c:	a0 93 66 00 	sts	0x0066, r26	; 0x800066 <delay_on+0x2>
  110:	b0 93 67 00 	sts	0x0067, r27	; 0x800067 <delay_on+0x3>
-	delay_off=700;
  114:	80 e0       	ldi	r24, 0x00	; 0
  116:	90 e0       	ldi	r25, 0x00	; 0
  118:	af e2       	ldi	r26, 0x2F	; 47
@@ -183,11 +154,7 @@ void SetDelay(){
  120:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  124:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  128:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
-	break;
  12c:	08 95       	ret
-	
-	case 3 :
-	delay_on=500;
  12e:	80 e0       	ldi	r24, 0x00	; 0
  130:	90 e0       	ldi	r25, 0x00	; 0
  132:	aa ef       	ldi	r26, 0xFA	; 250
@@ -196,16 +163,11 @@ void SetDelay(){
  13a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <delay_on+0x1>
  13e:	a0 93 66 00 	sts	0x0066, r26	; 0x800066 <delay_on+0x2>
  142:	b0 93 67 00 	sts	0x0067, r27	; 0x800067 <delay_on+0x3>
-	delay_off=500;
  146:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
  14a:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  14e:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  152:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
-	break;
  156:	08 95       	ret
-	
-	case 4 :
-	delay_on=800;
  158:	80 e0       	ldi	r24, 0x00	; 0
  15a:	90 e0       	ldi	r25, 0x00	; 0
  15c:	a8 e4       	ldi	r26, 0x48	; 72
@@ -214,7 +176,6 @@ void SetDelay(){
  164:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <delay_on+0x1>
  168:	a0 93 66 00 	sts	0x0066, r26	; 0x800066 <delay_on+0x2>
  16c:	b0 93 67 00 	sts	0x0067, r27	; 0x800067 <delay_on+0x3>
-	delay_off=200;
  170:	80 e0       	ldi	r24, 0x00	; 0
  172:	90 e0       	ldi	r25, 0x00	; 0
  174:	a8 e4       	ldi	r26, 0x48	; 72
@@ -223,14 +184,8 @@ void SetDelay(){
  17c:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  180:	a0 93 62 00 	sts	0x0062, r26	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  184:	b0 93 63 00 	sts	0x0063, r27	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
-	break;
  188:	08 95       	ret
-	
-	
-	default:
-		flag2 = 0 ;
  18a:	10 92 6c 00 	sts	0x006C, r1	; 0x80006c <flag2>
-		delay_on=100;
  18e:	80 e0       	ldi	r24, 0x00	; 0
  190:	90 e0       	ldi	r25, 0x00	; 0
  192:	a8 ec       	ldi	r26, 0xC8	; 200
@@ -239,7 +194,6 @@ void SetDelay(){
  19a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <delay_on+0x1>
  19e:	a0 93 66 00 	sts	0x0066, r26	; 0x800066 <delay_on+0x2>
  1a2:	b0 93 67 00 	sts	0x0067, r27	; 0x800067 <delay_on+0x3>
-		delay_off=900;
  1a6:	80 e0       	ldi	r24, 0x00	; 0
  1a8:	90 e0       	ldi	r25, 0x00	; 0
  1aa:	a1 e6       	ldi	r26, 0x61	; 97
@@ -251,377 +205,271 @@ void SetDelay(){
  1be:	08 95       	ret
 
 000001c0 <app_init>:
-	
-	
-}
-void app_init(void){
-	
-	 BUTTON_init(BUTTON_INT0_PORT,BUTTON_INT0_PIN);
  1c0:	62 e0       	ldi	r22, 0x02	; 2
  1c2:	83 e0       	ldi	r24, 0x03	; 3
  1c4:	0e 94 6f 02 	call	0x4de	; 0x4de <BUTTON_init>
-	 BUTTON_init(BUTTON_INT1_PORT,BUTTON_INT1_PIN);
  1c8:	63 e0       	ldi	r22, 0x03	; 3
  1ca:	83 e0       	ldi	r24, 0x03	; 3
  1cc:	0e 94 6f 02 	call	0x4de	; 0x4de <BUTTON_init>
-
-	 LED_init(PORT_B,PIN_0);
  1d0:	60 e0       	ldi	r22, 0x00	; 0
  1d2:	81 e0       	ldi	r24, 0x01	; 1
  1d4:	0e 94 7f 02 	call	0x4fe	; 0x4fe <LED_init>
-	 LED_init(PORT_B,PIN_1);
  1d8:	61 e0       	ldi	r22, 0x01	; 1
  1da:	81 e0       	ldi	r24, 0x01	; 1
  1dc:	0e 94 7f 02 	call	0x4fe	; 0x4fe <LED_init>
-	 LED_init(PORT_B,PIN_2);
  1e0:	62 e0       	ldi	r22, 0x02	; 2
  1e2:	81 e0       	ldi	r24, 0x01	; 1
  1e4:	0e 94 7f 02 	call	0x4fe	; 0x4fe <LED_init>
-	 LED_init(PORT_B,PIN_3);
  1e8:	63 e0       	ldi	r22, 0x03	; 3
  1ea:	81 e0       	ldi	r24, 0x01	; 1
  1ec:	0e 94 7f 02 	call	0x4fe	; 0x4fe <LED_init>
-	 
-	 // INTERRUPT
-	 SEI;
  1f0:	8f b7       	in	r24, 0x3f	; 63
  1f2:	80 68       	ori	r24, 0x80	; 128
  1f4:	8f bf       	out	0x3f, r24	; 63
-	error_value= ExtInt_init(); 
  1f6:	0e 94 ce 03 	call	0x79c	; 0x79c <ExtInt_init>
  1fa:	80 93 6b 00 	sts	0x006B, r24	; 0x80006b <error_value>
-	error_value2=INT0_SetCallback(SetFlag);
  1fe:	89 e4       	ldi	r24, 0x49	; 73
  200:	90 e0       	ldi	r25, 0x00	; 0
  202:	0e 94 e3 03 	call	0x7c6	; 0x7c6 <INT0_SetCallback>
  206:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <__data_end>
-	INT1_SetCallback(SetDelay);
  20a:	84 e5       	ldi	r24, 0x54	; 84
  20c:	90 e0       	ldi	r25, 0x00	; 0
  20e:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <INT1_SetCallback>
  212:	08 95       	ret
 
 00000214 <app_start>:
-}
-
-
-void app_start(){
-	if (flag == 0){
  214:	80 91 6d 00 	lds	r24, 0x006D	; 0x80006d <flag>
  218:	81 11       	cpse	r24, r1
  21a:	11 c0       	rjmp	.+34     	; 0x23e <app_start+0x2a>
-		LED_off(PORT_B,PIN_0);
  21c:	60 e0       	ldi	r22, 0x00	; 0
  21e:	81 e0       	ldi	r24, 0x01	; 1
  220:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  224:	61 e0       	ldi	r22, 0x01	; 1
  226:	81 e0       	ldi	r24, 0x01	; 1
  228:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  22c:	62 e0       	ldi	r22, 0x02	; 2
  22e:	81 e0       	ldi	r24, 0x01	; 1
  230:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);	
  234:	63 e0       	ldi	r22, 0x03	; 3
  236:	81 e0       	ldi	r24, 0x01	; 1
  238:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
  23c:	08 95       	ret
-
-	}
-	else if(flag == 1){
  23e:	81 30       	cpi	r24, 0x01	; 1
  240:	41 f5       	brne	.+80     	; 0x292 <app_start+0x7e>
-		LED_on(PORT_B,PIN_0);
  242:	60 e0       	ldi	r22, 0x00	; 0
  244:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  248:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  24c:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  250:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  254:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  258:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_0);
  25c:	60 e0       	ldi	r22, 0x00	; 0
  25e:	81 e0       	ldi	r24, 0x01	; 1
  260:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  264:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  268:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  26c:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  270:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  274:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_1);
  278:	61 e0       	ldi	r22, 0x01	; 1
  27a:	81 e0       	ldi	r24, 0x01	; 1
  27c:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  280:	62 e0       	ldi	r22, 0x02	; 2
  282:	81 e0       	ldi	r24, 0x01	; 1
  284:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);
  288:	63 e0       	ldi	r22, 0x03	; 3
  28a:	81 e0       	ldi	r24, 0x01	; 1
  28c:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
  290:	08 95       	ret
-		
-		
-	}else if (flag == 2){
  292:	82 30       	cpi	r24, 0x02	; 2
  294:	69 f5       	brne	.+90     	; 0x2f0 <app_start+0xdc>
-		LED_on(PORT_B,PIN_0);
  296:	60 e0       	ldi	r22, 0x00	; 0
  298:	81 e0       	ldi	r24, 0x01	; 1
  29a:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_1);
  29e:	61 e0       	ldi	r22, 0x01	; 1
  2a0:	81 e0       	ldi	r24, 0x01	; 1
  2a2:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  2a6:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  2aa:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  2ae:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  2b2:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  2b6:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_0);
  2ba:	60 e0       	ldi	r22, 0x00	; 0
  2bc:	81 e0       	ldi	r24, 0x01	; 1
  2be:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  2c2:	61 e0       	ldi	r22, 0x01	; 1
  2c4:	81 e0       	ldi	r24, 0x01	; 1
  2c6:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  2ca:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  2ce:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  2d2:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  2d6:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  2da:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		
-		LED_off(PORT_B,PIN_2);
  2de:	62 e0       	ldi	r22, 0x02	; 2
  2e0:	81 e0       	ldi	r24, 0x01	; 1
  2e2:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);
  2e6:	63 e0       	ldi	r22, 0x03	; 3
  2e8:	81 e0       	ldi	r24, 0x01	; 1
  2ea:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
  2ee:	08 95       	ret
-		
-		
-	}else if (flag == 3){
  2f0:	83 30       	cpi	r24, 0x03	; 3
  2f2:	89 f5       	brne	.+98     	; 0x356 <app_start+0x142>
-		LED_on(PORT_B,PIN_0);
  2f4:	60 e0       	ldi	r22, 0x00	; 0
  2f6:	81 e0       	ldi	r24, 0x01	; 1
  2f8:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_1);
  2fc:	61 e0       	ldi	r22, 0x01	; 1
  2fe:	81 e0       	ldi	r24, 0x01	; 1
  300:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_2);
  304:	62 e0       	ldi	r22, 0x02	; 2
  306:	81 e0       	ldi	r24, 0x01	; 1
  308:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  30c:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  310:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  314:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  318:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  31c:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_0);
  320:	60 e0       	ldi	r22, 0x00	; 0
  322:	81 e0       	ldi	r24, 0x01	; 1
  324:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  328:	61 e0       	ldi	r22, 0x01	; 1
  32a:	81 e0       	ldi	r24, 0x01	; 1
  32c:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  330:	62 e0       	ldi	r22, 0x02	; 2
  332:	81 e0       	ldi	r24, 0x01	; 1
  334:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  338:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  33c:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  340:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  344:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  348:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_3);
  34c:	63 e0       	ldi	r22, 0x03	; 3
  34e:	81 e0       	ldi	r24, 0x01	; 1
  350:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
  354:	08 95       	ret
-		
-		
-	}else if (flag == 4){
  356:	84 30       	cpi	r24, 0x04	; 4
  358:	a9 f5       	brne	.+106    	; 0x3c4 <app_start+0x1b0>
-		LED_on(PORT_B,PIN_0);
  35a:	60 e0       	ldi	r22, 0x00	; 0
  35c:	81 e0       	ldi	r24, 0x01	; 1
  35e:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_1);
  362:	61 e0       	ldi	r22, 0x01	; 1
  364:	81 e0       	ldi	r24, 0x01	; 1
  366:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_2);
  36a:	62 e0       	ldi	r22, 0x02	; 2
  36c:	81 e0       	ldi	r24, 0x01	; 1
  36e:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_3);
  372:	63 e0       	ldi	r22, 0x03	; 3
  374:	81 e0       	ldi	r24, 0x01	; 1
  376:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  37a:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  37e:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  382:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  386:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  38a:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_0);
  38e:	60 e0       	ldi	r22, 0x00	; 0
  390:	81 e0       	ldi	r24, 0x01	; 1
  392:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  396:	61 e0       	ldi	r22, 0x01	; 1
  398:	81 e0       	ldi	r24, 0x01	; 1
  39a:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  39e:	62 e0       	ldi	r22, 0x02	; 2
  3a0:	81 e0       	ldi	r24, 0x01	; 1
  3a2:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);
  3a6:	63 e0       	ldi	r22, 0x03	; 3
  3a8:	81 e0       	ldi	r24, 0x01	; 1
  3aa:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  3ae:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  3b2:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  3b6:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  3ba:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  3be:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
  3c2:	08 95       	ret
-	}else if (flag == 5){
  3c4:	85 30       	cpi	r24, 0x05	; 5
  3c6:	89 f5       	brne	.+98     	; 0x42a <__EEPROM_REGION_LENGTH__+0x2a>
-		LED_off(PORT_B,PIN_0);
  3c8:	60 e0       	ldi	r22, 0x00	; 0
  3ca:	81 e0       	ldi	r24, 0x01	; 1
  3cc:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		
-		LED_on(PORT_B,PIN_1);
  3d0:	61 e0       	ldi	r22, 0x01	; 1
  3d2:	81 e0       	ldi	r24, 0x01	; 1
  3d4:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_2);
  3d8:	62 e0       	ldi	r22, 0x02	; 2
  3da:	81 e0       	ldi	r24, 0x01	; 1
  3dc:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_3);
  3e0:	63 e0       	ldi	r22, 0x03	; 3
  3e2:	81 e0       	ldi	r24, 0x01	; 1
  3e4:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  3e8:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  3ec:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  3f0:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  3f4:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  3f8:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_1);
  3fc:	61 e0       	ldi	r22, 0x01	; 1
  3fe:	81 e0       	ldi	r24, 0x01	; 1
  400:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  404:	62 e0       	ldi	r22, 0x02	; 2
  406:	81 e0       	ldi	r24, 0x01	; 1
  408:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);
  40c:	63 e0       	ldi	r22, 0x03	; 3
  40e:	81 e0       	ldi	r24, 0x01	; 1
  410:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  414:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  418:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  41c:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  420:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  424:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
  428:	08 95       	ret
-		
-	}else if (flag == 6){
  42a:	86 30       	cpi	r24, 0x06	; 6
  42c:	69 f5       	brne	.+90     	; 0x488 <__EEPROM_REGION_LENGTH__+0x88>
-		LED_off(PORT_B,PIN_0);
  42e:	60 e0       	ldi	r22, 0x00	; 0
  430:	81 e0       	ldi	r24, 0x01	; 1
  432:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  436:	61 e0       	ldi	r22, 0x01	; 1
  438:	81 e0       	ldi	r24, 0x01	; 1
  43a:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		
-		LED_on(PORT_B,PIN_2);
  43e:	62 e0       	ldi	r22, 0x02	; 2
  440:	81 e0       	ldi	r24, 0x01	; 1
  442:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		LED_on(PORT_B,PIN_3);
  446:	63 e0       	ldi	r22, 0x03	; 3
  448:	81 e0       	ldi	r24, 0x01	; 1
  44a:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  44e:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  452:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  456:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  45a:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  45e:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_2);
  462:	62 e0       	ldi	r22, 0x02	; 2
  464:	81 e0       	ldi	r24, 0x01	; 1
  466:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_3);
  46a:	63 e0       	ldi	r22, 0x03	; 3
  46c:	81 e0       	ldi	r24, 0x01	; 1
  46e:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  472:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  476:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  47a:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
  47e:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <__DATA_REGION_ORIGIN__+0x3>
  482:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
  486:	08 95       	ret
-		
-	}
-	else if (flag == 7){
  488:	87 30       	cpi	r24, 0x07	; 7
  48a:	41 f5       	brne	.+80     	; 0x4dc <__EEPROM_REGION_LENGTH__+0xdc>
-		LED_off(PORT_B,PIN_0);
  48c:	60 e0       	ldi	r22, 0x00	; 0
  48e:	81 e0       	ldi	r24, 0x01	; 1
  490:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_1);
  494:	61 e0       	ldi	r22, 0x01	; 1
  496:	81 e0       	ldi	r24, 0x01	; 1
  498:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_off(PORT_B,PIN_2);
  49c:	62 e0       	ldi	r22, 0x02	; 2
  49e:	81 e0       	ldi	r24, 0x01	; 1
  4a0:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		LED_on(PORT_B,PIN_3);
  4a4:	63 e0       	ldi	r22, 0x03	; 3
  4a6:	81 e0       	ldi	r24, 0x01	; 1
  4a8:	0e 94 8f 02 	call	0x51e	; 0x51e <LED_on>
-		TIMER_0_DELAY_MS(delay_on);
  4ac:	60 91 64 00 	lds	r22, 0x0064	; 0x800064 <delay_on>
  4b0:	70 91 65 00 	lds	r23, 0x0065	; 0x800065 <delay_on+0x1>
  4b4:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <delay_on+0x2>
  4b8:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <delay_on+0x3>
  4bc:	0e 94 42 05 	call	0xa84	; 0xa84 <TIMER_0_DELAY_MS>
-		LED_off(PORT_B,PIN_3);
  4c0:	63 e0       	ldi	r22, 0x03	; 3
  4c2:	81 e0       	ldi	r24, 0x01	; 1
  4c4:	0e 94 9f 02 	call	0x53e	; 0x53e <LED_off>
-		TIMER_0_DELAY_MS(delay_off);
  4c8:	60 91 60 00 	lds	r22, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
  4cc:	70 91 61 00 	lds	r23, 0x0061	; 0x800061 <__DATA_REGION_ORIGIN__+0x1>
  4d0:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <__DATA_REGION_ORIGIN__+0x2>
@@ -820,16 +668,7 @@ Dio_ErrorStatus LED_off(PORT_NUM portNum , PIN_NUM pinNum){
  554:	08 95       	ret
 
 00000556 <main>:
- 
-
- 
-int main(void)
-{
-	app_init();
  556:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <app_init>
-	
-	while (1){
-		app_start();
  55a:	0e 94 0a 01 	call	0x214	; 0x214 <app_start>
  55e:	fd cf       	rjmp	.-6      	; 0x55a <main+0x4>
 
@@ -1635,7 +1474,7 @@ ISR(EXT_INT_2){
  8d6:	18 95       	reti
 
 000008d8 <TIMER_0_init>:
-}
+
 void TIMER_0_stop(void){
 	
 	CLR_BIT(TCCR0,CS00);
@@ -1757,8 +1596,8 @@ void TIMER_0_stop(void){
  9b6:	08 95       	ret
 
 000009b8 <TIMER_0_setIntialValue>:
-enu_Timer_ErrorStatus TIMER_0_setIntialValue(uint8_t value){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
 
 	if(value < TIMR0_MAX_VALUE && value >= 0){
 		
@@ -1786,7 +1625,9 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  9cc:	ff 92       	push	r15
  9ce:	4b 01       	movw	r8, r22
  9d0:	5c 01       	movw	r10, r24
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
+	
 	double num_ovf = 0;
 	if (overflow > 0)
  9d2:	20 e0       	ldi	r18, 0x00	; 0
@@ -1822,7 +1663,7 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  a04:	c1 2c       	mov	r12, r1
  a06:	d1 2c       	mov	r13, r1
  a08:	76 01       	movw	r14, r12
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	
 	double num_ovf = 0;
 	if (overflow > 0)
 	{
@@ -1835,20 +1676,20 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  a12:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <__cmpsf2>
  a16:	88 23       	and	r24, r24
  a18:	24 f3       	brlt	.-56     	; 0x9e2 <TIMER_0_OvfNum+0x24>
-	return errorStatus ;
 }
 
 
 enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
  a1a:	84 e0       	ldi	r24, 0x04	; 4
  a1c:	2a c0       	rjmp	.+84     	; 0xa72 <TIMER_0_OvfNum+0xb4>
-			while(GET_BIT(TIFR,TOV0)==0);
-			SET_BIT(TIFR,TOV0);
 			num_ovf++;
 		}
 		num_ovf = 0;
-	}else if (overflow <= 0)
+	}
+	
+	else if (overflow <= 0)
  a1e:	20 e0       	ldi	r18, 0x00	; 0
  a20:	30 e0       	ldi	r19, 0x00	; 0
  a22:	a9 01       	movw	r20, r18
@@ -1857,15 +1698,15 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  a28:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <__cmpsf2>
  a2c:	18 16       	cp	r1, r24
  a2e:	9c f4       	brge	.+38     	; 0xa56 <TIMER_0_OvfNum+0x98>
-		}
 		num_ovf = 0;
 	}
 		
-		else{
-			errorStatus = INVALID_OVF;
+	else
+	{
+		errorStatus = INVALID_OVF;
  a30:	82 e0       	ldi	r24, 0x02	; 2
  a32:	1f c0       	rjmp	.+62     	; 0xa72 <TIMER_0_OvfNum+0xb4>
-	}else if (overflow <= 0)
+	else if (overflow <= 0)
 	{
 		overflow = 1 ;
 		while(num_ovf < overflow){
@@ -1892,9 +1733,9 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  a56:	c1 2c       	mov	r12, r1
  a58:	d1 2c       	mov	r13, r1
  a5a:	76 01       	movw	r14, r12
-		}
-		num_ovf = 0;
-	}else if (overflow <= 0)
+	}
+	
+	else if (overflow <= 0)
 	{
 		overflow = 1 ;
 		while(num_ovf < overflow){
@@ -1907,16 +1748,16 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
  a68:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <__cmpsf2>
  a6c:	88 23       	and	r24, r24
  a6e:	14 f3       	brlt	.-60     	; 0xa34 <TIMER_0_OvfNum+0x76>
-	return errorStatus ;
 }
 
 
 enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
  a70:	84 e0       	ldi	r24, 0x04	; 4
-		else{
-			errorStatus = INVALID_OVF;
-		}
+	{
+		errorStatus = INVALID_OVF;
+	}
 	
 	return errorStatus;
 }

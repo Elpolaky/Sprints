@@ -5,13 +5,15 @@
  *  Author: moham
  */ 
 #include "timer.h"
+#include <math.h>
 
-	double ovfNum  ;
-	double t ;
+double ovfNum  ;
+double t ;
 	
-enu_Timer_ErrorStatus TIMER_0_init(enu_Timer_Mode mode){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
-	
+enu_Timer_ErrorStatus TIMER_0_init(enu_Timer_Mode mode)
+{
+	enu_Timer_ErrorStatus errorStatus ;
+	 errorStatus = TIMER_OK;
 	switch(mode){
 		
 		case NORMAL_MODE :
@@ -45,8 +47,10 @@ enu_Timer_ErrorStatus TIMER_0_init(enu_Timer_Mode mode){
 	
 }
 
-enu_Timer_ErrorStatus TIMER_0_start(enu_Timer_Prescaler prescaler){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+enu_Timer_ErrorStatus TIMER_0_start(enu_Timer_Prescaler prescaler)
+{
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
 	
 	switch(prescaler){
 		
@@ -98,7 +102,8 @@ void TIMER_0_stop(void){
 
 
 enu_Timer_ErrorStatus TIMER_0_setIntialValue(uint8_t value){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
 
 	if(value < TIMR0_MAX_VALUE && value >= 0){
 		
@@ -111,7 +116,9 @@ enu_Timer_ErrorStatus TIMER_0_setIntialValue(uint8_t value){
 
 
 enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
-	enu_Timer_ErrorStatus errorStatus = TIMER_OK;
+	enu_Timer_ErrorStatus errorStatus ;
+	errorStatus = TIMER_OK;
+	
 	double num_ovf = 0;
 	if (overflow > 0)
 	{
@@ -123,7 +130,9 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
 			num_ovf++;
 		}
 		num_ovf = 0;
-	}else if (overflow <= 0)
+	}
+	
+	else if (overflow <= 0)
 	{
 		overflow = 1 ;
 		while(num_ovf < overflow){
@@ -135,9 +144,10 @@ enu_Timer_ErrorStatus TIMER_0_OvfNum(double overflow){
 		num_ovf = 0;
 	}
 		
-		else{
-			errorStatus = INVALID_OVF;
-		}
+	else
+	{
+		errorStatus = INVALID_OVF;
+	}
 	
 	return errorStatus;
 }
