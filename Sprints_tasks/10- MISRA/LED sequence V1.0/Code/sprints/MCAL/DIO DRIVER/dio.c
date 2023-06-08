@@ -8,7 +8,8 @@
 #include "dio.h"
 
 enu_Dio_ErrorStatus DIO_init(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , enu_PIN_DIR direction){
-	enu_Dio_ErrorStatus loc_ErrorStatus = Dio_Ok;
+	enu_Dio_ErrorStatus loc_ErrorStatus;
+	 loc_ErrorStatus= Dio_Ok;
 	
 	if( (PinNum<PIN_0) || (PinNum>PIN_7) ){
 		loc_ErrorStatus = Dio_PinError ;
@@ -92,7 +93,8 @@ enu_Dio_ErrorStatus DIO_init(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , enu_PIN_
 
 
 enu_Dio_ErrorStatus DIO_write(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , enu_VALUE value){
-	enu_Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	enu_Dio_ErrorStatus loc_errorStatus;
+	loc_errorStatus= Dio_Ok;
 	
 	if( (PinNum<PIN_0) || (PinNum>PIN_7) ){
 		loc_errorStatus = Dio_PinError ;
@@ -179,7 +181,8 @@ enu_Dio_ErrorStatus DIO_write(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , enu_VAL
 
 
 enu_Dio_ErrorStatus DIO_read(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , uint8_t* value){
-	enu_Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	enu_Dio_ErrorStatus loc_errorStatus;
+	loc_errorStatus= Dio_Ok;
 	
 	if(PinNum<PIN_0 || PinNum>PIN_7){
 		loc_errorStatus = Dio_PinError ;
@@ -221,7 +224,9 @@ enu_Dio_ErrorStatus DIO_read(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum , uint8_t*
 
 
 enu_Dio_ErrorStatus DIO_toggle(enu_PORT_NUM PortNum, enu_PIN_NUM PinNum ){
-	enu_Dio_ErrorStatus loc_errorStatus = Dio_Ok ;
+	enu_Dio_ErrorStatus loc_errorStatus;
+	loc_errorStatus= Dio_Ok;
+	
 	if(PinNum<PIN_0 || PinNum>PIN_7){
 		loc_errorStatus = Dio_PinError ;
 	}
